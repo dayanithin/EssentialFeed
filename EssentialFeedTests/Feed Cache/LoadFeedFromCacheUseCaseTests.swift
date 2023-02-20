@@ -77,6 +77,14 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
             store.completeRetrival(with: feed.local, timestamp: moreThanSevenDaysOldTimestamp)
         }
     }
+    
+    func test_load_deletesCacheOnRetrivalError() {
+        let (sut, store) = makeSUT()
+        sut.load { _ in }
+        
+        store.completeRetrival(with: anyNSError())
+        XCTAssertEqual(store.recievedMessages, [.retreive, .deleteCacheFeed])
+    }
 
     private func expect(_ sut: LocalFeedLoader, toCompleteWith expectedResult: LocalFeedLoader.LoadResult, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for load completion")
