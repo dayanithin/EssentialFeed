@@ -19,18 +19,9 @@ public final class LocalFeedLoader {
         self.store = store
         self.currentDate = currentDate
     }
-    
-    public func save(_ feed: [FeedImage], completion: @escaping (SaveResult) -> Void) {
-        store.deleteCachedFeed { [weak self] error in
-            guard let self = self else { return }
-            if let cacheDeletionError = error {
-                completion(cacheDeletionError)
-            } else {
-                self.cache(feed, with: completion)
-            }
-        }
-    }
-    
+}
+
+extension LocalFeedLoader {
     public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve { [weak self] result in
             guard let self = self else { return }
@@ -66,6 +57,19 @@ public final class LocalFeedLoader {
             return false
         }
         return currentDate() < maxCacheAge
+    }
+}
+
+extension LocalFeedLoader {
+    public func save(_ feed: [FeedImage], completion: @escaping (SaveResult) -> Void) {
+        store.deleteCachedFeed { [weak self] error in
+            guard let self = self else { return }
+            if let cacheDeletionError = error {
+                completion(cacheDeletionError)
+            } else {
+                self.cache(feed, with: completion)
+            }
+        }
     }
     
     private func cache(_ feed: [FeedImage], with completion: @escaping (SaveResult) -> Void) {
