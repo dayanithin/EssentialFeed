@@ -124,10 +124,6 @@ class URLSessionHTTPClientTests: XCTestCase {
         return recievedResult
     }
     
-    private func anyURL() -> URL {
-        return URL(string: "https://any-url.com")!
-    }
-    
     private func anyData() -> Data {
         Data("any data".utf8)
     }
@@ -139,11 +135,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     private func anyHTTPURLResponse() -> HTTPURLResponse {
         HTTPURLResponse(url: anyURL(), statusCode: 200, httpVersion: nil, headerFields: nil)!
     }
-    
-    private func anyNSError() -> NSError {
-        NSError(domain: "any error", code: 0)
-    }
-    
+
     private class URLProtocolStub: URLProtocol {
         private static var stubs: Stub?
         private static var requestObserver: ((URLRequest) -> Void)?
