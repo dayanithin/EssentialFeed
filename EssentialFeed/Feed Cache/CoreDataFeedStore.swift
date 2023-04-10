@@ -17,6 +17,21 @@ public final class CoreDataFeedStore: FeedStore {
         context = container.newBackgroundContext()
     }
     
+    public func retrieve(completion: @escaping RetrivalCompletion) {
+        let context = self.context
+        context.perform {
+            do {
+                if let cache = try ManagedCache.find(in: context) {
+                    completion(.found(feed: cache.localFeed, timestamp: cache.timestamp))
+                } else {
+                    completion(.empty)
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     public func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
         let context = self.context
         context.perform {
@@ -36,22 +51,6 @@ public final class CoreDataFeedStore: FeedStore {
         
     }
     
-    public func retrieve(completion: @escaping RetrivalCompletion) {
-        let context = self.context
-        context.perform {
-            do {
-                let request = NSFetchRequest<ManagedCache>(entityName: "ManagedCache")
-                request.returnsObjectsAsFaults = false
-                if let cache = try context.fetch(request).first {
-                    completion(.found(feed: cache.localFeed, timestamp: cache.timestamp))
-                } else {
-                    completion(.empty)
-                }
-            } catch {
-                completion(.failure(error))
-            }
-        }
-    }
 }
 
 @objc(ManagedCache)
@@ -61,6 +60,12 @@ private class ManagedCache: NSManagedObject {
     
     var localFeed: [LocalFeedImage] {
         return feed.compactMap { ($0 as? ManagedFeedImage)?.local }
+    }
+    
+    static func find(in context: NSManagedObjectContext) throws -> ManagedCache? {
+        let request = NSFetchRequest<ManagedCache>(entityName: ManagedCache.entity().name!)
+        request.returnsObjectsAsFaults = false
+        return try context.fetch(request).first
     }
 }
 
