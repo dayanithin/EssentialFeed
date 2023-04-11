@@ -45,6 +45,7 @@
 		57B6C59E29AA5E6800959EE9 /* FeedCachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6C59D29AA5E6800959EE9 /* FeedCachePolicy.swift */; };
 		57CEDBA2299D69140065A371 /* LoadFeedFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CEDBA1299D69140065A371 /* LoadFeedFromCacheUseCaseTests.swift */; };
 		57CEDBA4299D6C7B0065A371 /* FeedStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CEDBA3299D6C7A0065A371 /* FeedStoreSpy.swift */; };
+		57FC97C229E5C82F00A23662 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC97C129E5C82F00A23662 /* CoreDataHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		57B6C59D29AA5E6800959EE9 /* FeedCachePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCachePolicy.swift; sourceTree = "<group>"; };
 		57CEDBA1299D69140065A371 /* LoadFeedFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFeedFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		57CEDBA3299D6C7A0065A371 /* FeedStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStoreSpy.swift; sourceTree = "<group>"; };
+		57FC97C129E5C82F00A23662 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				576ADF6329D16831003EB71D /* CoreDataFeedStore.swift */,
+				57FC97C129E5C82F00A23662 /* CoreDataHelpers.swift */,
 				576ADF6629D17443003EB71D /* FeedStore.xcdatamodeld */,
 			);
 			path = "Core Data";
@@ -441,6 +444,7 @@
 				5776B028298995A900DD5000 /* FeedImage.swift in Sources */,
 				571EA7F1296C50FC002ABC47 /* URLSessionHTTPClient.swift in Sources */,
 				571EA7A52960A4D6002ABC47 /* RemoteFeedLoader.swift in Sources */,
+				57FC97C229E5C82F00A23662 /* CoreDataHelpers.swift in Sources */,
 				571EA7A72961FBF7002ABC47 /* HTTPClient.swift in Sources */,
 				576ADF6529D16875003EB71D /* CoreDataFeedStore.swift in Sources */,
 				571EA79F29608707002ABC47 /* FeedLoader.swift in Sources */,
